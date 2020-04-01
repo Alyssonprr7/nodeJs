@@ -37,18 +37,15 @@ function createWishlist(request,response) {
 function deleteWishlistById(request, response){
     Wishlist.deleteOne({_id: request.params.id})
      .then(function(){
-         response.status(200).send(`Item Atualizado com sucesso `)
+         response.status(200).send(`Item  Atualizado com sucesso `)
      }).catch(function(err){
         response.status(500).send({message: "Ops! Ocorreu algum erro"})
         console.error(err)
      });    
 }
 
-
-
 function updateWishlistById(request, response){ 
-
-    Wishlist.findByIdAndUpdate(request.params.id,{name:request.body.name},function(){})
+    Wishlist.findByIdAndUpdate(request.params.id,request.body)
      .then(function(){
          response.status(200).send(`Item Atualizado com sucesso`)
          console.log()
